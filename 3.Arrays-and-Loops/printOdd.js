@@ -1,6 +1,6 @@
 function printOdd(number){
     for(i = 1; i <= number; i++){
-        if(i % 2 == 1){//checks for a remainder, odd number will have a remainder 1 if divided by 2
+        if(i % 2 === 1){//checks for a remainder, odd number will have a remainder 1 if divided by 2
             console.log(i);
         }
     }
