@@ -2,12 +2,13 @@
 let a = 1
 let b = 0
 try{
-   if(b == 0){
-      throw("cannot be divided by zero");
+   c = a/b
+   if(b === 0){
+      throw new Error("cannot be divided by zero")
    } else{
       console.log(c = a/b);
    }
 }
 catch(e){
-   console.log(("Error: " + e ))
+   console.error(e.name + ': ' + e.message)
 }
