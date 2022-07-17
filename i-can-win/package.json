@@ -1,0 +1,18 @@
+{
+  "name": "webdriver",
+  "version": "1.0.0",
+  "description": "example project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "latest-chrome-version": "^2.0.2",
+    "select": "^1.1.2",
+    "selenium-webdriver": "^4.2.0",
+    "webdriver-manager": "^12.1.8",
+    "type": "module"
+  }
+}

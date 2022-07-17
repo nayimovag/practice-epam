@@ -1,0 +1,17 @@
+{
+  "name": "hurt-me-plenty",
+  "version": "1.0.0",
+  "main": "hurt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^2.6.12",
+    "scroll-js": "^3.5.2"
+  },
+  "devDependencies": {},
+  "description": ""
+}
