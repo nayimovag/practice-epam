@@ -12,7 +12,7 @@ class PastebinHomePage extends Page {
     this.expirationDropdown = By.css('#select2-postform-expiration-container')
     this.tenMinutesOption = By.xpath('//li[contains(.,"10 Minutes")]')
     this.pasteNameField = By.xpath('//*[@id="postform-name"]')
-    this.savePasteButton = By.xpath('//*[@id="w0"]/div[5]/div[1]/div[8]/button')
+    this.savePasteButton = By.xpath('//*[@id="w0"]//button')
   }
 
   async open() {

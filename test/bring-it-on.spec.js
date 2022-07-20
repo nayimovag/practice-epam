@@ -18,7 +18,7 @@ describe('Selenium WebDriver', () => {
 
   describe('Checking if the entered data was saved correctly', () => {
 
-    const pastebinSavedPastePage = new PastebinSavedPastePage()
+    const pastebinSavedPastePage = new PastebinSavedPastePage(DRIVER)
 
     it('should check page title', async () => {
       expect(pastebinSavedPastePage.getActualPageTitle()).to.be.equal('how to gain dominance among developers')
@@ -30,7 +30,11 @@ describe('Selenium WebDriver', () => {
   
     it('should check pasted text', async () => {
       expect(pastebinSavedPastePage.getActualPastedText()).to.be.equal('git config --global user.name "New Sheriff in Town" \ngit reset $ (git commit-tree HEAD ^ {tree} -m "Legacy code") \ngit push origin master --force')
+    })
+
+    after(async () => {
       await pastebinSavedPastePage.closeBrowser()
     })
+
   })
 })

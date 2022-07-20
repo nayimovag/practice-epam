@@ -3,10 +3,10 @@ const { By } = require('selenium-webdriver');
 
 class PastebinSavedPastePage extends Page {
 
-  constructor() {
-    super()
+  constructor(driver) {
+    super(driver)
 
-    this.actualSyntaxHighlighting = By.xpath('/html/body/div[1]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/a')
+    this.actualSyntaxHighlighting = By.xpath('//div[@class="left"]//a')
     this.actualPastedText = By.xpath('//textarea')
     
   }
@@ -14,19 +14,16 @@ class PastebinSavedPastePage extends Page {
   async getActualPageTitle() {
     let actualPageTitle = await driver.getTitle()
     return actualPageTitle
-    
   }
 
   async getActualSyntaxHighlighting() {
-    await this.actualSyntaxHighlighting.getText().then(function (text) {
-        return text
-     })
+    const actualSyntaxHighlightingElement = await this.driver.findElement(this.actualSyntaxHighlighting)
+    return actualSyntaxHighlightingElement.getText()
   }
 
   async getActualPastedText() {
-    await this.actualPastedText.getText().then(function (text) {
-        return text
-     })
+    const actualPastedTextElement = await this.driver.findElement(this.actualPastedText)
+    return actualPastedTextElement.getText()
   }
 }
 
