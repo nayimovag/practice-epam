@@ -3,12 +3,9 @@ const estimateCostPage = require('../../app/page-objects/estimate-cost-page')
 
 describe('cloud.google.com ', () => {
 
-  const SEARCH_TEXT = "Google Cloud Platform Pricing Calculator\n"
-  const NUMBEROF_INSTANCES = '4'
-
   it('should login with valid credentials', async () => {
     await cloudHomePage.open()
-    await cloudHomePage.typeAndSave(SEARCH_TEXT, NUMBEROF_INSTANCES)
+    await cloudHomePage.typeAndSave()
   })
 
   it('should check if the vm class corresponds entered data', async () => {
@@ -29,5 +26,9 @@ describe('cloud.google.com ', () => {
 
   it('should check if the commitment term corresponds entered data', async () => {
     expect(await estimateCostPage.estimateCommitmentTerm).toHaveTextContaining('Commitment term: 1 Year')
+  })
+
+  it('should check the bill', async () => {
+    expect(await estimateCostPage.totalEstimateCost).toHaveTextContaining('1,081.20')
   })
 }) 

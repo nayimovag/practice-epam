@@ -87,12 +87,12 @@ class CloudHomePage extends Page {
        }
 
        
-      async typeAndSave(searchText, numberOfInstances) {
-        await this.searchButton.setValue(searchText)
+      async typeAndSave() {
+        await this.searchButton.setValue("Google Cloud Platform Pricing Calculator\n")
         await this.searchResult.click()
         await browser.switchToFrame(0)
         await browser.switchToFrame(0)
-        await this.numberOfInstancesArea.setValue(numberOfInstances)
+        await this.numberOfInstancesArea.setValue('4')
         await this.seriesDropdown.click()
         await this.seriesOption.click()
         await this.instanceTypeDropdown.click()

@@ -21,6 +21,10 @@ class EstimateCostPage extends Page {
     get estimateCommitmentTerm() {
         return $('//md-list-item[@ng-if="item.items.termText && item.items.termText.length != 0"]')
     }
+
+    get totalEstimateCost() {
+        return $('//b[@class="ng-binding"]')
+    }
 }
 
 
