@@ -1,19 +1,18 @@
-const Page = require('./page')
+const Page = require("./page");
 
 class PastebinSavedPastePage extends Page {
-
   get getActualPageTitle() {
-    const actualPageTitle = browser.getTitle()
-    return actualPageTitle
+    const actualPageTitle = browser.getTitle();
+    return actualPageTitle;
   }
 
   get actualSyntaxHighlighting() {
-    return $('//div[@class="left"]//a')
+    return $('//div[@class="left"]//a');
   }
 
   get actualPastedText() {
-    return $('//textarea')
+    return $("//textarea");
   }
 }
 
-module.exports = new PastebinSavedPastePage()
+module.exports = new PastebinSavedPastePage();
