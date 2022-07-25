@@ -45,7 +45,7 @@ class CloudHomePage extends Page {
     return $("//md-select[@placeholder='Number of GPUs']");
   }
 
-  get numberOfGpusoption() {
+  get numberOfGpusOption() {
     return $(
       "//md-option[@ng-repeat='item in listingCtrl.supportedGpuNumbers[listingCtrl.computeServer.gpuType]' and @value='1']"
     );
@@ -97,7 +97,7 @@ class CloudHomePage extends Page {
     await this.gpuTypeDropdown.click();
     await this.gpuTypeOption.click();
     await this.numberOfGpusDropdown.click();
-    await this.numberOfGpusoption.click();
+    await this.numberOfGpusOption.click();
     await this.localSsdDropdown.click();
     await this.localSsdOption.click();
     await this.dataCenterLocationDropdown.click();
