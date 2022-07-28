@@ -1,45 +1,33 @@
+const { Key } = require("selenium-webdriver");
 const Page = require("./page");
 
 class GetEmailPage extends Page {
-  get estimateVMClass() {
-    return $(
-      '//*[@ng-if="item.items.editHook && item.items.editHook.initialInputs.class"]/div'
-    );
+
+  get copyEmailButton() {
+    return $('//*[@id="copy_address"]');
   }
 
-  get email() {
-    return $('//a[@data-clipboard-action="copy"]');
+  get readEmailButton() {
+    return $('//div[@class="small_sender"]');
   }
-
-  get emailBoxPaste() {
-    return $('//input[@ng-model="emailQuote.user.email"]');
-  }
-
-  get sendEmailButton() {
-    return $("//button[@aria-label='Send Email']");
-  }
-
-  get readEmail() {
-    return $('//span[@class="predmet pull-left"]');
-  }
-
+  
   get emailedEstimatedBill() {
     return $("//h2");
   }
 
-  async copyAndPaste() {
-    await this.email.click();
+  async copyEmail() {
+    await this.copyEmailButton.click();
     await browser.switchWindow("cloud.google.com");
-    await browser.switchToFrame(0);
-    await browser.switchToFrame(0);
-    await this.emailBoxPaste.setValue(this.email);
-    await this.sendEmailButton.click();
-    await browser.switchWindow("minuteinbox.com");
-    await this.readEmail.click();
+  }
+
+  async readEmail() {
+    await browser.pause(30000);
+    await this.readEmailButton.waitForDisplayed();
+    await this.readEmailButton.click();
   }
 
   async open() {
-    await browser.newWindow("https://www.minuteinbox.com/");
+    await browser.newWindow("https://10minutemail.com/");
   }
 }
 

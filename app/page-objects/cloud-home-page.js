@@ -1,4 +1,5 @@
 const Page = require("./page");
+const { Key } = require("selenium-webdriver");
 
 class CloudHomePage extends Page {
   get searchButton() {
@@ -87,13 +88,25 @@ class CloudHomePage extends Page {
     return $('//*[@id="email_quote"]');
   }
 
+  get emailBoxPaste() {
+    return $('//input[@ng-model="emailQuote.user.email"]');
+  }
+
+  get sendEmailButton() {
+    return $('//button[@ng-disabled="emailForm.$invalid"]');
+  }
+
+  async switchToFrames() {
+    await browser.switchToFrame(0);
+    await browser.switchToFrame(0);
+  }
+  
   async typeAndSave() {
     await this.searchButton.setValue(
       "Google Cloud Platform Pricing Calculator\n"
     );
     await this.searchResult.click();
-    await browser.switchToFrame(0);
-    await browser.switchToFrame(0);
+    await this.switchToFrames();
     await this.numberOfInstancesArea.setValue("4");
     await this.seriesDropdown.click();
     await this.seriesOption.click();
@@ -112,6 +125,13 @@ class CloudHomePage extends Page {
     await this.committedUsageOption.click();
     await this.addEstimateButton.click();
     await this.emailEstimateButton.click();
+  }
+
+  async pasteAndSendEmail() {
+    await this.switchToFrames();
+    await this.emailBoxPaste.setValue(Key.chord(Key.CONTROL, 'v'))
+    await this.sendEmailButton.click();
+    await browser.switchWindow("10minutemail.com");
   }
 
   async open() {
