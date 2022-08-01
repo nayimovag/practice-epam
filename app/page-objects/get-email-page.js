@@ -2,20 +2,20 @@ const { Key } = require("selenium-webdriver");
 const Page = require("./page");
 
 class GetEmailPage extends Page {
-
   get copyEmailButton() {
-    return $('//*[@id="copy_address"]');
+    return $('//*[@id="click-to-copy"]');
   }
 
   get readEmailButton() {
-    return $('//div[@class="small_sender"]');
+    return $('//div[@class="col-box"]');
   }
-  
+
   get emailedEstimatedBill() {
-    return $("//h2");
+    return $("//td/h2");
   }
 
   async copyEmail() {
+    await this.copyEmailButton.waitForDisplayed();
     await this.copyEmailButton.click();
     await browser.switchWindow("cloud.google.com");
   }
@@ -27,7 +27,7 @@ class GetEmailPage extends Page {
   }
 
   async open() {
-    await browser.newWindow("https://10minutemail.com/");
+    await browser.newWindow("https://temp-mail.org/en/");
   }
 }
 

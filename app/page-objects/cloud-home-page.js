@@ -6,8 +6,10 @@ class CloudHomePage extends Page {
     return $('//*[@name="q"]');
   }
 
-  get searchResult() {
-    return $('//a[contains(.,"Google Cloud Pricing Calculator")]');
+  get calculatorLink() {
+    return $(
+      '//div[@class="gs-title"]//a[@href="https://cloud.google.com/products/calculator"]'
+    );
   }
 
   get numberOfInstancesArea() {
@@ -96,16 +98,22 @@ class CloudHomePage extends Page {
     return $('//button[@ng-disabled="emailForm.$invalid"]');
   }
 
+  get resultBlock() {
+    return $("#resultBlock");
+  }
+
   async switchToFrames() {
     await browser.switchToFrame(0);
     await browser.switchToFrame(0);
   }
-  
+
   async typeAndSave() {
     await this.searchButton.setValue(
-      "Google Cloud Platform Pricing Calculator\n"
+      "Google Cloud Platform Pricing Calculator"
     );
-    await this.searchResult.click();
+    await browser.keys("Enter");
+    await this.calculatorLink.waitForDisplayed();
+    await this.calculatorLink.click();
     await this.switchToFrames();
     await this.numberOfInstancesArea.setValue("4");
     await this.seriesDropdown.click();
@@ -129,9 +137,14 @@ class CloudHomePage extends Page {
 
   async pasteAndSendEmail() {
     await this.switchToFrames();
-    await this.emailBoxPaste.setValue(Key.chord(Key.CONTROL, 'v'))
+    await this.emailBoxPaste.setValue(Key.chord(Key.CONTROL, "v"));
     await this.sendEmailButton.click();
-    await browser.switchWindow("10minutemail.com");
+    await browser.switchWindow("temp-mail.org");
+  }
+
+  async forSmokeTest() {
+    await this.switchToFrames();
+    await this.addEstimateButton.click();
   }
 
   async open() {
