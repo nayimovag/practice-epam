@@ -24,7 +24,7 @@ exports.config = {
   //
   specs: ["./test/specs/**/*.js"],
   suites: {
-    smoke: ["./test/smokeTests/cloud.smoke.js"],
+    smoke: ["./test/smoke/cloud.smoke.js"],
     general: ["./test/specs/cloud.specs.js"],
     pastebin: ["./test/specs/pastebin.specs.js"],
   },
